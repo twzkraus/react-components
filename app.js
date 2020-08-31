@@ -16,12 +16,32 @@ var GroceryList = (props) => (
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      done: false
+    };
+  }
+
+  onMouseEnter() {
+    this.setState({
+      done: true
+    })
+  }
+
+  onMouseLeave() {
+    this.setState({
+      done: false
+    })
   }
 
   render() {
 
+    var style = {
+      fontWeight: this.state.done ? 800 : 400
+    };
+
     return (
-    <li>{this.props.item}</li>
+    <li style ={style} onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>{this.props.item}</li>
     );
 
   }
